@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --obsidian-void: #020308;
+  --obsidian-depth: #08080c;
+  --obsidian-panel: rgba(13, 14, 25, 0.7);
+  --luminous-indigo: #6366f1;
+  --luminous-emerald: #10b981;
+  --luminous-rose: #f43f5e;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --selection-bg: rgba(99, 102, 241, 0.35);
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  background: var(--obsidian-void);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--obsidian-void);
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: #ffffff;
+}
+
+/* Custom Scrollbar - Minimal Obsidian */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mesh Gradient for the Atmosphere */
+.mesh-atmosphere {
+  position: fixed;
+  inset: 0;
+  background-color: var(--obsidian-void);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,15%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,20%,0.2) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(339,49%,20%,0.1) 0, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass-panel {
+  background: var(--obsidian-panel);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Reality Mode Environment Stimuli */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(1px, 1.2px) rotate(0.1deg); }
+  50% { transform: translate(-1.2px, 2px) rotate(-0.1deg); }
+  75% { transform: translate(-2px, -1.2px) rotate(0.1deg); }
+  100% { transform: translate(0, 0); }
+}
+
+.reality-env-shake {
+  animation: shake 0.15s infinite;
+}
+
+@keyframes glitch-neon {
+  0% { text-shadow: 0 0 2px var(--luminous-rose); opacity: 0.9; }
+  50% { text-shadow: 0 0 8px var(--luminous-rose); opacity: 1; }
+  100% { text-shadow: 0 0 2px var(--luminous-rose); opacity: 0.9; }
+}
+
+.reality-glitch-active {
+  animation: glitch-neon 0.3s infinite;
+  color: var(--luminous-rose) !important;
+}
+
+/* Struggle Glow - Dynamic Ambient Pulse */
+.struggle-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, var(--luminous-rose), transparent 70%);
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+}
